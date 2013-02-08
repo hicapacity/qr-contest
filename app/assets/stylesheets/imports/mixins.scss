@@ -25,6 +25,36 @@
   text-shadow: $color $x $y $blur;
 }
 
+@mixin opacity($opacity) {
+  -webkit-opacity: $opacity;
+  -moz-opacity: $opacity;
+  -o-opacity: $opacity;
+  opacity: $opacity;
+}
+
+@mixin transition($properties, $duration, $timing: ease, $includePrefix: false) {
+  @if $includePrefix {
+    @each $property in $properties {
+      -webkit-transition-property: -webkit-#{$property};
+      -moz-transition-property: -moz-#{$property};
+      -o-transition-property: -o-#{$property};
+    }
+  } @else {
+    -webkit-transition-property: $properties;
+    -moz-transition-property: $properties;
+    -o-transition-property: $properties;
+  }
+  -webkit-transition-duration: $duration;
+  -webkit-transition-timing-function: $timing;
+  -moz-transition-duration: $duration;
+  -moz-transition-timing-function: $timing;
+  -o-transition-duration: $duration;
+  -o-transition-timing-function: $timing;
+  transition-property: $properties;
+  transition-duration: $duration;
+  transition-timing-function: $timing;
+}
+
 .inline-block {
   display: inline-block;
   zoom: 1;

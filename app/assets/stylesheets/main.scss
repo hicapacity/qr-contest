@@ -1,7 +1,10 @@
 @import 'imports/mixins';
 @import 'imports/colors';
 
-a:link, a:visited, a:hover, a:active {
+a:link,
+a:visited,
+a:hover,
+a:active {
   color: inherit;
   text-decoration: none;
 }
@@ -36,6 +39,7 @@ header {
   }
 }
 
+section#loading,
 section#login,
 section#main-content {
 	margin: 10px;
@@ -43,6 +47,26 @@ section#main-content {
 	background-color: rgba(255, 255, 255, 0.1);
 	@include box-shadow(4px, 4px);
 	@include border-radius;
+}
+
+section#login {
+  text-align: center;
+}
+
+section#login,
+section#main-content {
+  display: none;
+}
+
+div#denied {
+  display: none;
+}
+
+div.btngroup {
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.1);
+  padding: 10px;
+  @include border-radius;
 }
 
 a.btn {
@@ -57,7 +81,8 @@ a.btn {
   @include border-radius;
   @include text-shadow;
   
-  &:hover, &:active {
+  &:hover,
+  &:active {
     @include vlinear-gradient(lighten($btn-light, 5%), lighten($btn-dark, 5%));
   }
 }
