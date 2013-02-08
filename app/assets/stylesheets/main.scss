@@ -1,0 +1,29 @@
+@import 'imports/mixins';
+
+body {
+  background-image: url(/assets/escheresque_ste.png);
+	font-family: 'Merriweather', serif;
+}
+
+header {
+  @include vlinear-gradient(#333333, #222222);
+  @include box-shadow(0, 5px);
+  padding: 1em;
+}
+
+header h1 {
+  width: 176px;
+  height: 20px;
+  text-indent: -9999px;
+  background: url(/assets/hicap_logo.png) no-repeat top left;
+  margin: 0 auto;
+}
+
+section#main-content {
+	margin: 10px;
+	padding: 10px;
+	color: #eee;
+	background-color: rgba(255, 255, 255, 0.2);
+	@include box-shadow(4px, 4px);
+	@include border-radius;
+}
