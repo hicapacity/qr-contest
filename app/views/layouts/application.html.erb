@@ -3,14 +3,23 @@
 <head>
   <title>HI Capacity QR Contest</title>
   <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
+  <link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+  <%= yield :head %>
 </head>
 <body>
   <header>
     <h1>HI Capacity</h1>
   </header>
+  <section id="login">
+    <h2>Welcome to HI Capacity!</h2>
+    <p>
+      If you would like to take part in our QR Code Scavenger Hunt, please use the button below to login to Facebook and authorize our app.
+    </p>
+    <a href="#" id="fblogin" class="btn foundicon-facebook">Login With Facebook</a>
+  </section>
   <section id="main-content">
     <%= yield %>
   </section>

@@ -2,11 +2,12 @@
 window.fbAsyncInit = function() {
   FB.init({
     appId      : <%= Settings.facebook_appid.to_json %>,
-    channelUrl : '//WWW.YOUR_DOMAIN.COM/channel.html', // Channel File
+    channelUrl : '//<%= Settings.facebook_channel_host %>/channel.html', // Channel File
     status     : true, // check login status
     cookie     : true, // enable cookies to allow the server to access the session
     xfbml      : true  // parse XFBML
   });
+  fbInitialized();
 };
 
 // Load the SDK Asynchronously

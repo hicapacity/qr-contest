@@ -20,3 +20,13 @@
 	-moz-border-radius: $radius;
 	border-radius: $radius;
 }
+
+@mixin text-shadow($x: 1px, $y: 1px, $blur: 2px, $color: rgba(30, 30, 30, 0.75)) {
+  text-shadow: $color $x $y $blur;
+}
+
+.inline-block {
+  display: inline-block;
+  zoom: 1;
+  *display: inline;
+}
