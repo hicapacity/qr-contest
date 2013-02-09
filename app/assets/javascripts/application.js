@@ -12,4 +12,4 @@
 //
 //= require jquery
 //= require facebook
-//= require_tree .
+//= require main

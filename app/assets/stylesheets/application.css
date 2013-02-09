@@ -9,7 +9,8 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require html5-doctor-reset-stylesheet.min
- *= require foundicons/social_foundicons
+ *= require foundicons/general/general_foundicons
+ *= require foundicons/social/social_foundicons
  *= require_directory .
  *= require_self
  */

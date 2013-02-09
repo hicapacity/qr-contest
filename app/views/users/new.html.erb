@@ -1,6 +1,16 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "user_form" %>
+  <script>
+    window.fbLoginComplete = function(fbresponse) {
+      $('#loading').hide();
+      $('#main-content').fadeIn();
+    };
+  </script>
+<% end %>
+
 <h2>Thanks for Joining!</h2>
 <p>
-  We would like to use your profile picture and name on our &ldquot;leader board&rdquot;.
+  We would like to use your profile picture and name on our &ldquo;leader board&rdquo;.
   However, you can disable your profile picture below, or change your name if you'd like.
 </p>
 <%= render :partial => 'form' %>

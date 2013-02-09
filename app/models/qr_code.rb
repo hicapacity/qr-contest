@@ -1,3 +1,3 @@
 class QRCode < ActiveRecord::Base
-  # attr_accessible :title, :body
+  attr_accessible :shortcode, :badge_image
 end

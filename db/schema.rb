@@ -11,13 +11,20 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130207063403) do
+ActiveRecord::Schema.define(:version => 20130208225741) do
 
   create_table "qr_codes", :force => true do |t|
     t.string   "shortcode",   :limit => 6, :null => false
     t.string   "badge_image"
     t.datetime "created_at",               :null => false
     t.datetime "updated_at",               :null => false
+  end
+
+  create_table "users", :primary_key => "fbid", :force => true do |t|
+    t.string   "username",                          :null => false
+    t.boolean  "use_profile_pic", :default => true, :null => false
+    t.datetime "created_at",                        :null => false
+    t.datetime "updated_at",                        :null => false
   end
 
 end

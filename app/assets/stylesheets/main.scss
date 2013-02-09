@@ -17,6 +17,7 @@ strong {
 
 p {
   margin: 1em 0;
+	line-height: 1.2;
 }
 
 body {
@@ -63,10 +64,15 @@ div#denied {
 }
 
 div.btngroup {
+	margin-top: 1em;
   text-align: center;
   background-color: rgba(255, 255, 255, 0.1);
   padding: 10px;
   @include border-radius;
+
+	a.btn {
+		margin: 0 0.5em;
+	}
 }
 
 a.btn {
@@ -85,4 +91,28 @@ a.btn {
   &:active {
     @include vlinear-gradient(lighten($btn-light, 5%), lighten($btn-dark, 5%));
   }
+
+	&.no-text {
+		padding-right: 0.75em;
+	}
+
+	&.is-disabled {
+		@include vlinear-gradient($btn-disabled-light, $btn-disabled-dark);
+
+		&:hover,
+		&:active {
+			@include vlinear-gradient(lighten($btn-disabled-light, 5%), lighten($btn-disabled-dark, 5%));
+		}
+	}
+}
+
+input.txt {
+	font: inherit;
+	color: inherit;
+	background-color: rgba(255, 255, 255, 0.1);
+	border-width: 0;
+	margin: 0.5em;
+	padding: 0.5em 0.75em;
+	outline: none;
+	@include border-radius;
 }
