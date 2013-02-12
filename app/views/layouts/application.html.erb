@@ -12,6 +12,11 @@
 <body>
   <header>
     <h1>HI Capacity</h1>
+    <%
+      if user_logged_in?
+        concat link_to image_tag("//graph.facebook.com/#{current_user.use_profile_pic ? current_user.fbid : 1}/picture?width=40&height=40"), edit_user_path(current_user.fbid, :return => request.fullpath), :class => 'settings'
+      end
+    %>
   </header>
   <section id="loading">
     <h2>Loading</h2>

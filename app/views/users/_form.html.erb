@@ -1,7 +1,17 @@
+<% if flash[:error] %>
+  <p class="error general-error">
+    <%= flash[:error] %>
+  </p>
+<% end %>
+<% if flash[:notice] %>
+  <p class="notice general-checkmark">
+    <%= flash[:notice] %>
+  </p>
+<% end %>
 <%= form_for @user do |f| %>
   <%= f.hidden_field :fbid %>
-  <%= f.hidden_field :use_profile_pic %>
-  <%= hidden_field_tag :return, @return %>
+  <%= f.hidden_field :use_profile_pic, :value => @user.use_profile_pic %>
+  <%= hidden_field_tag :return, @return if defined? @return && !@return.blank? %>
   <%= f.label :username %>
   <%= f.text_field :username, :class => 'txt' %>
   <div class="btngroup">

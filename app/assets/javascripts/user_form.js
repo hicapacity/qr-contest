@@ -1,6 +1,5 @@
 window.fbAuthorized = function (fbresponse) {
   FB.api('/me', function(response) {
-    console.log(response);
     $('#user_fbid').val(response.id);
     $('.use-profile-pic').append('<img src="//graph.facebook.com/' + response.id + '/picture" />');
     if ($('#user_use_profile_pic').val() == 'true')
@@ -31,8 +30,10 @@ $(function() {
       $('.use-profile-pic').addClass('is-disabled');
       $('#user_use_profile_pic').val('false');
     }
+    return false;
   });
   $('#save-user').on('click', function() {
     $(this).closest('form').submit();
+    return false;
   });
 });

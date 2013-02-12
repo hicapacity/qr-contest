@@ -11,7 +11,15 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130208225741) do
+ActiveRecord::Schema.define(:version => 20130212074704) do
+
+  create_table "badges", :force => true do |t|
+    t.string   "slug",       :limit => 50, :null => false
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
+
+  add_index "badges", ["slug"], :name => "index_badges_on_slug"
 
   create_table "qr_codes", :force => true do |t|
     t.string   "shortcode",   :limit => 6, :null => false
@@ -20,11 +28,35 @@ ActiveRecord::Schema.define(:version => 20130208225741) do
     t.datetime "updated_at",               :null => false
   end
 
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
   create_table "users", :primary_key => "fbid", :force => true do |t|
     t.string   "username",                          :null => false
     t.boolean  "use_profile_pic", :default => true, :null => false
     t.datetime "created_at",                        :null => false
     t.datetime "updated_at",                        :null => false
   end
+
+  create_table "users_badges", :id => false, :force => true do |t|
+    t.integer "user_id",  :null => false
+    t.integer "badge_id", :null => false
+  end
+
+  add_index "users_badges", ["user_id"], :name => "index_users_badges_on_user_id"
+
+  create_table "users_qr_codes", :id => false, :force => true do |t|
+    t.integer "user_id",    :null => false
+    t.integer "qr_code_id", :null => false
+  end
+
+  add_index "users_qr_codes", ["user_id"], :name => "index_users_qr_codes_on_user_id"
 
 end

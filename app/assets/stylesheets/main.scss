@@ -18,6 +18,22 @@ strong {
 p {
   margin: 1em 0;
 	line-height: 1.2;
+	
+	&.error,
+	&.notice {
+	  margin: 0.5em 0;
+	  padding: 0.5em;
+	  @include border-radius;
+	}
+	
+	&.error {
+	  color: #fcc;
+	  background-color: rgba(255, 192, 192, 0.35);
+	}
+	
+	&.notice {
+	  background-color: rgba(46, 117, 153, 0.35);
+	}
 }
 
 body {
@@ -30,6 +46,7 @@ header {
   @include vlinear-gradient(#333333, #222222);
   @include box-shadow(0, 5px);
   padding: 1em;
+  position: relative;
 
   h1 {
     width: 176px;
@@ -37,6 +54,17 @@ header {
     text-indent: -9999px;
     background: url(/assets/hicap_logo.png) no-repeat top left;
     margin: 0 auto;
+  }
+  
+  a.settings {
+    position: absolute;
+    top: 6px;
+    right: 6px;
+    
+    img {
+      width: 40px;
+      height: 40px;
+    }
   }
 }
 
