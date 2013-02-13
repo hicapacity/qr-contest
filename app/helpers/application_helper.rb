@@ -8,4 +8,8 @@ module ApplicationHelper
     !!session[:fbid]
   end
   
+  def image_fullurl(source)
+    URI.join(root_url, image_path(source))
+  end
+  
 end

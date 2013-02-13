@@ -5,7 +5,7 @@
   <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application", "main" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
@@ -18,26 +18,7 @@
       end
     %>
   </header>
-  <section id="loading">
-    <h2>Loading</h2>
-  </section>
-  <section id="login">
-    <h2>Welcome to HI Capacity!</h2>
-    <div id="new-visitor">
-      <p>
-        If you would like to take part in our QR Code Scavenger Hunt, please use the button below to login to Facebook and authorize our app.
-      </p>
-    </div>
-    <div id="denied">
-      <p>
-        If you change your mind, click the Login button below.
-      </p>
-    </div>
-    <div class="btngroup">
-      <a href="#" id="fblogin" class="btn social-facebook">Login With Facebook</a>
-    </div>
-  </section>
-  <section id="main-content">
+  <section id="public-content">
     <%= yield %>
   </section>
 </body>
