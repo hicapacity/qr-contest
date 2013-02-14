@@ -4,8 +4,9 @@
   <title>HI Capacity QR Contest</title>
   <link href='http://fonts.googleapis.com/css?family=Merriweather:400,700' rel='stylesheet' type='text/css'>
   <link href='http://fonts.googleapis.com/css?family=Lato:700' rel='stylesheet' type='text/css'>
+  <script>window.isLoggedIn = <%= user_logged_in?.to_json %>;</script>
   <%= stylesheet_link_tag    "application", :media => "all" %>
-  <%= javascript_include_tag "application" %>
+  <%= javascript_include_tag "application", "public" %>
   <%= csrf_meta_tags %>
   <%= yield :head %>
 </head>
@@ -18,7 +19,10 @@
       end
     %>
   </header>
-  <section id="public-content">
+  <section id="loading">
+    <h2>Loading</h2>
+  </section>
+  <section id="main-content">
     <%= yield %>
   </section>
 </body>

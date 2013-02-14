@@ -5,6 +5,11 @@ class QrcodeController < ApplicationController
     raise ActionController::RoutingError.new('Not Found') if @code.nil?
     
     @badge = @code.badge
+    if user_logged_in?
+      user.badges << @badge
+      user.save
+    end
+    
     begin
       render params[:shortcode]
     rescue ActionView::MissingTemplate

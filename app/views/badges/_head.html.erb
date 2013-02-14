@@ -1,7 +1,0 @@
-<% content_for :head do %>
-  <meta property="fb:app_id" content="<%= Settings.facebook_appid %>" /> 
-  <meta property="og:type"   content="hicapacity:badge" /> 
-  <meta property="og:url"    content="<%= badge_url(@badge.slug) %>" /> 
-  <meta property="og:title"  content="<%= @badge.title %>" /> 
-  <meta property="og:image"  content="<%= image_fullurl(@badge.slug) %>" />
-<% end %>

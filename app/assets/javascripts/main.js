@@ -21,22 +21,4 @@
       return false;
     });
   });
-  
-  window.fbInitialized = function() {
-    FB.getLoginStatus(function (response) {
-      if (response.status == 'connected') {
-        // Already connected and authorized
-        if (window.fbAuthorized !== undefined) {
-          window.fbAuthorized(response);
-        } else {
-          $('#loading').hide();
-          $('#main-content').fadeIn();
-        }
-      } else {
-        // Not authorized or not logged in
-        $('#loading').hide();
-        $('#login').fadeIn();
-      }
-    });
-  };
 })();

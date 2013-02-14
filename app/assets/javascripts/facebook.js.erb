@@ -3,11 +3,44 @@ window.fbAsyncInit = function() {
   FB.init({
     appId      : <%= Settings.facebook_appid.to_json %>,
     channelUrl : '//<%= Settings.facebook_channel_host %>/channel.html', // Channel File
-    status     : true, // check login status
-    cookie     : true, // enable cookies to allow the server to access the session
-    xfbml      : true  // parse XFBML
+    status     : true,  // check login status
+    cookie     : true,  // enable cookies to allow the server to access the session
+    xfbml      : false  // parse XFBML
   });
-  fbInitialized();
+  FB.getLoginStatus(function (response) {
+    if (response.status == 'connected') {
+      // Already connected and authorized
+      var func = function() {
+        if (window.fbAuthorized !== undefined) {
+          window.fbAuthorized(response);
+        } else {
+          $('#loading').hide();
+          $('#main-content').fadeIn();
+        }
+      };
+      if (window.isLoggedIn) {
+        func();
+      } else {
+        $.post(<%= HicapQrContest::Application.routes.url_helpers.sessions_path.to_json %>,
+          {fbid: response.authResponse.userID},
+          function(data) {
+            if (data && data.success)
+              window.location.reload();
+            else
+              func();
+          },
+          'json');
+      }
+    } else {
+      // Not authorized or not logged in
+      if (window.fbNotAuthorized !== undefined) {
+        window.fbNotAuthorized(response);
+      } else {
+        $('#loading').hide();
+        $('#login').fadeIn();
+      }
+    }
+  });
 };
 
 // Load the SDK Asynchronously
