@@ -6,7 +6,8 @@ class QrcodeController < ApplicationController
     
     @badge = @code.badge
     if user_logged_in?
-      user.badges << @badge
+      user.qr_codes << @code
+      user.badges << @badge unless @badge.nil?
       user.save
     end
     
