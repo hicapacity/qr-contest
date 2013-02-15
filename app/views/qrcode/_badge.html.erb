@@ -1,0 +1,8 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "qr_code_badge" %>
+<% end %>
+
+<div id="badge-popup">
+  <%= image_path @badge.slug %>
+</div>
+<%= render :partial => 'badges/descriptions/' + @badge.slug %>

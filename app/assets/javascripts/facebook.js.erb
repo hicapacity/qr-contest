@@ -10,16 +10,8 @@ window.fbAsyncInit = function() {
   FB.getLoginStatus(function (response) {
     if (response.status == 'connected') {
       // Already connected and authorized
-      var func = function() {
-        if (window.fbAuthorized !== undefined) {
-          window.fbAuthorized(response);
-        } else {
-          $('#loading').hide();
-          $('#main-content').fadeIn();
-        }
-      };
       if (window.isLoggedIn) {
-        func();
+        window.fbAuthorized(response);
       } else {
         $.post(<%= HicapQrContest::Application.routes.url_helpers.sessions_path.to_json %>,
           {fbid: response.authResponse.userID},
@@ -27,20 +19,25 @@ window.fbAsyncInit = function() {
             if (data && data.success)
               window.location.reload();
             else
-              func();
+              window.fbAuthorized(response);
           },
           'json');
       }
     } else {
       // Not authorized or not logged in
-      if (window.fbNotAuthorized !== undefined) {
-        window.fbNotAuthorized(response);
-      } else {
-        $('#loading').hide();
-        $('#login').fadeIn();
-      }
+      window.fbNotAuthorized(response);
     }
   });
+};
+
+window.fbAuthorized = function(response) {
+  $('#loading').hide();
+  $('#main-content').fadeIn();
+};
+
+window.fbNotAuthorized = function(response) {
+  $('#loading').hide();
+  $('#login').fadeIn();
 };
 
 // Load the SDK Asynchronously

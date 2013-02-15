@@ -1,1 +1,9 @@
 <h2>You've Found a QR Code!</h2>
+<% if @badge.nil? %>
+  <p>
+    Keep looking!
+    There are more to find!
+  </p>
+<% else %>
+  <%= render :partial => 'badge' %>
+<% end %>
