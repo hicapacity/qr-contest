@@ -4,14 +4,26 @@ class QrcodeController < ApplicationController
     @code = QRCode.find_by_shortcode params[:shortcode]
     raise ActionController::RoutingError.new('Not Found') if @code.nil?
     
-    @badge = @code.badge
-    @logbadge = false
+    @badges = []
     if user_logged_in?
-      current_user.qr_codes << @code unless current_user.qr_codes.exists? @code
-      unless @badge.nil?() || current_user.badges.exists?(@badge)
-        # TODO: @logbadge = true
-        current_user.badges << @badge
+      unless @code.badge.nil?() || current_user.badges.exists?(@code.badge)
+        current_user.badges << @code.badge
+        @badges << @code.badge
       end
+      
+      unless current_user.qr_codes.exists? @code
+        current_user.qr_codes << @code
+
+        cnt = current_user.qr_codes.count
+        if cnt % 5 == 0
+          badge = Badge.find_by_slug "#{cnt}-qrcodes"
+          unless badge.nil?() || current_user.badges.exists?(badge)
+            current_user.badges << badge
+            @badges << badge
+          end
+        end
+      end
+      
       current_user.save
     end
     
