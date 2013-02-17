@@ -8,9 +8,33 @@
   <meta property="og:image"  content="<%= image_fullurl(@badge.slug + '-large.png') %>" />
 <% end %>
 
-<h2><%= @badge.title %></h2>
+<h2 class="general-flag"><%= @badge.title %></h2>
 <div class="btngroup badge">
   <div class="burst"></div>
   <%= image_tag @badge.slug + '-large.png' %>
 </div>
 <%= render :partial => 'badges/descriptions/' + @badge.slug %>
+
+<h2 class="general-quote">What's This All About Then?</h2>
+<p>
+  These badges were awarded to participants in HI Capacity's QR Code scavenger hunt.
+  As part of hosting Wetware Wednesday, HI Capacity challenged attendees to find QR Codes hidden throughout the space.
+  Some of the codes were well hidden; some were in plain view.
+  Others showcased some of the neat things we do at HI Capacity.
+  Badges were awarded for finding certain codes, and some lucky participants were also awarded with some neat prizes!
+</p>
+
+<h2 class="general-people">HI Ca-What Now?</h2>
+<p>
+  HI Capacity!
+  We are Honolulu's only &ldquo;makerspace&rdquo;.
+  Located in the heart of Kaka&lsquo;ako, we are a community run organization that provides the space, the tools, and the inspiration for people who like to build and tinker.
+  Our members are everything from engineers to artists, and we keep ourselves busy!
+  We have talks to teach each other about cool new technology;
+  We collaborate on projects and help each other to achieve our goals;
+  And, of course, sometimes we just meet-up to socialize.
+</p>
+<p>
+  So if you've got an insatiable curiosity and a desire to play with some new technology to build something cool, check us out!
+  You can find more information on our website at <a href="http://hicapacity.org" class="general-website">HICapacity.org</a>, and, if you have any questions, please contact us at <a href="mailto:maker@hicapacity.org" class="general-mail">maker@hicapacity.org</a>.
+</p>

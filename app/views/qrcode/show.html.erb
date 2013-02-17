@@ -1,10 +1,8 @@
 <% if @badges.empty? %>
-  <h2>You've Found a QR Code!</h2>
-  <p>
-    Keep looking!
-    There are more to find!
-  </p>
+  <h2 class="general-checkmark">You've Found a QR Code!</h2>
+  <p><%= @inspirational_msg %></p>
 <% else %>
-  <h2>You've Found a QR Code and Won a Neat Badge!</h2>
+  <h2 class="general-star">You've Found a QR Code and Won a Neat Badge!</h2>
+  <p><%= @inspirational_msg %></p>
   <%= render :partial => 'badge' %>
 <% end %>
