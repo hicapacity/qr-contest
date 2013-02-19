@@ -1,17 +1,17 @@
 <% content_for :head do %>
-  <meta property="fb:app_id" content="<%= Settings.facebook_appid %>" />
-  <meta property="og:type"   content="hicapacity:badge" />
-  <meta property="og:url"    content="<%= badge_url(@badge.slug) %>" />
-  <meta property="og:title"  content="<%= @badge.title %>" />
-  <meta property="og:image"  content="<%= image_fullurl(@badge.slug + '-small.png') %>" />
-  <meta property="og:image"  content="<%= image_fullurl(@badge.slug + '-medium.png') %>" />
-  <meta property="og:image"  content="<%= image_fullurl(@badge.slug + '-large.png') %>" />
+  <meta property="fb:app_id"       content="<%= Settings.facebook_appid %>" />
+  <meta property="og:type"         content="hicapacity:badge" />
+  <meta property="og:url"          content="<%= badge_url(@badge.slug) %>" />
+  <meta property="og:title"        content="<%= @badge.title %>" />
+  <meta property="og:description"  content="<%= @badge.description %>" />
+  <meta property="og:image"        content="<%= image_fullurl(@badge.slug + '.png') %>" />
+  <meta property="hicapacity:rank" content="<%= @badge.rank %>" />
 <% end %>
 
 <h2 class="general-flag"><%= @badge.title %></h2>
 <div class="btngroup badge">
   <div class="burst"></div>
-  <%= image_tag @badge.slug + '-large.png' %>
+  <%= image_tag @badge.slug + '.png' %>
 </div>
 <%= render :partial => 'badges/descriptions/' + @badge.slug %>
 

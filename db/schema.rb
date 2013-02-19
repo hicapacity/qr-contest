@@ -11,14 +11,16 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130213054322) do
+ActiveRecord::Schema.define(:version => 20130219204035) do
 
   create_table "badges", :force => true do |t|
-    t.string   "slug",       :limit => 50,  :null => false
-    t.datetime "created_at",                :null => false
-    t.datetime "updated_at",                :null => false
+    t.string   "slug",        :limit => 50,                 :null => false
+    t.datetime "created_at",                                :null => false
+    t.datetime "updated_at",                                :null => false
     t.integer  "qr_code_id"
-    t.string   "title",      :limit => 100, :null => false
+    t.string   "title",       :limit => 100,                :null => false
+    t.string   "description",                               :null => false
+    t.integer  "rank",                       :default => 0, :null => false
   end
 
   add_index "badges", ["qr_code_id"], :name => "index_badges_on_qr_code_id"
