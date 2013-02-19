@@ -18,6 +18,8 @@ window.fbAsyncInit = function() {
           function(data) {
             if (data && data.success)
               window.location.reload();
+            else if (window.fbLoginComplete)
+              window.fbLoginComplete(response);
             else
               window.fbAuthorized(response);
           },

@@ -38,10 +38,8 @@
         });
     
       // Log the badge to facebook
-      if (false) {
-        FB.api('/me/hicapacity:win', 'post',
-          {badge: window.badges[i].url});
-      }
+      FB.api('/me/hicapacity:win', 'post',
+        {badge: window.badges[i].url});
     };
     badgePopup(0);
   };
