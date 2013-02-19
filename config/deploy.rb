@@ -1,6 +1,7 @@
 require 'mina/bundler'
 require 'mina/rails'
 require 'mina/git'
+require 'mina/rbenv'
 
 set :domain,        'hicapacity.org'
 set :port,          '2242'
@@ -14,6 +15,7 @@ set :forward_agent, true
 set :shared_paths, ['db/production.sqlite3', 'log', 'tmp']
 
 task :environment do
+  invoke :'rbenv:load'
 end
 
 task :setup => :environment do
