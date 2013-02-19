@@ -15,7 +15,7 @@ $(function() {
         $('#denied').show();
         $('#login').fadeIn();
       }
-    });
+    }, {scope: 'publish_actions'});
     return false;
   });
 });
