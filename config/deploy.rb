@@ -12,7 +12,7 @@ set :branch,        'master'
 set :keep_releases, 2
 set :forward_agent, true
 
-set :shared_paths, ['db/production.sqlite3', 'log', 'tmp']
+set :shared_paths, ['db/production.sqlite3', 'config/settings.local.yml', 'log', 'tmp']
 
 task :environment do
   invoke :'rbenv:load'
