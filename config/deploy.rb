@@ -1,46 +1,62 @@
-server "hicapacity.org", :app, :web, :db, :primary => true
-set :port,        22
-set :application, "contest"
-set :deploy_to,   "/var/www/#{application}"
-set :rails_env,   "production"
+require 'mina/bundler'
+require 'mina/rails'
+require 'mina/git'
 
-set :scm,         :git
-set :repository,  "git@github.com:hicapacity/qr-contest.git"
-set :branch,      "origin/master"
-set :deploy_via,  :remote_cache
-set :ssh_options, {:forward_agent => true}
+set :domain,        'hicapacity.org'
+set :port,          '2242'
+set :user,          'deployer'
+set :deploy_to,     '/var/www/contest.hicapacity.org'
+set :repository,    'git@github.com:hicapacity/qr-contest.git'
+set :branch,        'master'
+set :keep_releases, 2
+set :forward_agent, true
 
-after "deploy:restart", "deploy:cleanup"
+set :shared_paths, ['db/production.sqlite3', 'log', 'tmp']
 
-namespace :deploy do
-  %w[start stop restart].each do |command|
-    desc "#{command} unicorn server"
-    task command, roles: :app, except: {no_release: true} do
-      run "/etc/init.d/unicorn_#{application} #{command}"
+task :environment do
+end
+
+task :setup => :environment do
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp"]
+  
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/pids"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/pids"]
+  
+  queue! %[mkdir -p "#{deploy_to}/shared/tmp/sockets"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/tmp/sockets"]
+  
+  queue! %[mkdir -p "#{deploy_to}/shared/log"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/log"]
+
+  queue! %[mkdir -p "#{deploy_to}/shared/config"]
+  queue! %[chmod g+rx,u+rwx "#{deploy_to}/shared/config"]
+
+  #queue! %[touch "#{deploy_to}/shared/config/database.yml"]
+  #queue  %[-----> Be sure to edit 'shared/config/database.yml'.]
+end
+
+desc "Deploys the current version to the server."
+task :deploy => :environment do
+  deploy do
+    invoke :'git:clone'
+    invoke :'deploy:link_shared_paths'
+    invoke :'bundle:install'
+    invoke :'rails:db_migrate'
+    invoke :'rails:assets_precompile'
+
+    to :launch do
+      queue '/etc/init.d/unicorn_contest.sh upgrade'
     end
   end
+end
 
-  task :setup_config, roles: :app do
-    sudo "ln -nfs #{current_path}/config/nginx.conf /etc/nginx/sites-enabled/#{application}"
-    sudo "ln -nfs #{current_path}/config/unicorn_init.sh /etc/init.d/unicorn_#{application}"
-    run "mkdir -p #{shared_path}/config"
-    put File.read("config/database.yml"), "#{shared_path}/config/database.yml"
-    puts "Now edit the config files in #{shared_path}."
-  end
-  after "deploy:setup", "deploy:setup_config"
-
-  task :symlink_config, roles: :app do
-    run "ln -nfs #{shared_path}/config/database.yml #{release_path}/config/database.yml"
-  end
-  after "deploy:finalize_update", "deploy:symlink_config"
-
-  desc "Make sure local git is in sync with remote."
-  task :check_revision, roles: :web do
-    unless `git rev-parse HEAD` == `git rev-parse origin/master`
-      puts "WARNING: HEAD is not the same as origin/master"
-      puts "Run `git push` to sync changes."
-      exit
+namespace :unicorn do
+  %w(start stop force-stop restart upgrade reopen-logs).each do |action|
+    desc "#{action.capitalize} Unicorn"
+    task action.to_sym do
+      queue %[echo "-----> #{action.capitalize} Unicorn..."]
+      queue! "/etc/init.d/unicorn_contest.sh #{action}"
     end
   end
-  before "deploy", "deploy:check_revision"
 end
