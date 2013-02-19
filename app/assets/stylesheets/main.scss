@@ -135,6 +135,13 @@ a.btn {
   @include box-shadow(4px, 4px);
   @include border-radius;
   @include text-shadow;
+
+	&[class*="#{$classPrefix}"]:before,
+	&[class*="#{$classPrefix}"]:before {
+		padding-right: 0.5em;
+	  border-right: 1px solid rgba(0, 0, 0, 0.25);
+	  margin-right: 0.4em;
+	}
   
   &:hover,
   &:active {
