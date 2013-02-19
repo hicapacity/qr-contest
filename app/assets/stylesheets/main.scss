@@ -10,10 +10,6 @@ a:active {
 }
 
 a[class*="general-"]:before {
-  color: inherit;
-  border-right-width: 0;
-  margin-right: 0;
-  padding-right: 0.3em;
   @include transition(color, 2s);
 }
 
@@ -131,6 +127,7 @@ a.btn {
   font-family: 'Lato', sans-serif;
   font-weight: 700;
   font-size: 1.2em;
+	color: inherit;
   padding: 0.5em 1em 0.5em 0.75em;
   border: 1px solid black;
   @extend .inline-block;
@@ -142,6 +139,10 @@ a.btn {
   &:hover,
   &:active {
     @include vlinear-gradient(lighten($btn-light, 5%), lighten($btn-dark, 5%));
+
+		&:before {
+			color: inherit;
+		}
   }
 
 	&.no-text {

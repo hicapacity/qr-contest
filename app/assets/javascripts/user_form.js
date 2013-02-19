@@ -1,4 +1,4 @@
-window.fbAuthorized = function (fbresponse) {
+window.fbLoginComplete = window.fbAuthorized = function (fbresponse) {
   FB.api('/me', function(response) {
     $('#user_fbid').val(response.id);
     $('.use-profile-pic').append('<img src="//graph.facebook.com/' + response.id + '/picture" />');

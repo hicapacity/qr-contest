@@ -1,9 +1,3 @@
 <% content_for :head do %>
   <%= javascript_include_tag "user_form" %>
-  <script>
-    window.fbLoginComplete = function(fbresponse) {
-      $('#loading').hide();
-      $('#main-content').fadeIn();
-    };
-  </script>
 <% end %>
