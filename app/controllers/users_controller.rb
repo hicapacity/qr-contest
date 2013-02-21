@@ -5,13 +5,11 @@ class UsersController < ApplicationController
     
     # check to see if the user already has an account
     # this happens in weird circumstances
-    unless params[:fbid].blank?
+    if !params[:fbid].blank?() && User.exists?(params[:fbid])
       @user = User.find params[:fbid]
-      unless @user.nil?
-        session[:fbid] = @user.fbid
-        render 'edit'
-        return
-      end
+      session[:fbid] = @user.fbid
+      render 'edit'
+      return
     end
     
     @user = User.new
