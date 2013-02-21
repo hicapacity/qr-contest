@@ -1,8 +1,20 @@
 class UsersController < ApplicationController
   
   def new
-    @user = User.new
     @return = params[:return]
+    
+    # check to see if the user already has an account
+    # this happens in weird circumstances
+    unless params[:fbid].blank?
+      @user = User.find params[:fbid]
+      unless @user.nil?
+        session[:fbid] = @user.fbid
+        render 'edit'
+        return
+      end
+    end
+    
+    @user = User.new
   end
   
   def create
@@ -22,6 +34,7 @@ class UsersController < ApplicationController
   
   def edit
     @user = current_user
+    @return = params[:return]
   end
   
   def update

@@ -1,5 +1,8 @@
 window.fbLoginComplete = function(response) {
-  window.location.href = '/users/new?return=' + encodeURIComponent(window.location.pathname);
+  var path = '/users/new?return=' + encodeURIComponent(window.location.pathname);
+  if (response && response.authResponse && response.authResponse.userID)
+    path += '&fbid=' + response.authResponse.userID;
+  window.location.href = path;
 };
 
 $(function() {
