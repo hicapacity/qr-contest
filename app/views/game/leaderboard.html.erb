@@ -1,0 +1,10 @@
+<% content_for :head do %>
+  <%= javascript_include_tag "leaderboard" %>
+<% end %>
+
+<h2 class="general-flag">Leader Board</h2>
+<p>
+  See how your competition is doing!
+  This table updates every <%= (Settings.leaderboard_update_ms / 1000) %> seconds.
+</p>
+<div id="leaderboard" />

@@ -15,6 +15,7 @@ class QrcodeController < ApplicationController
       
       unless current_user.qr_codes.exists? @code
         current_user.qr_codes << @code
+        current_user.last_qrcode_found_at = DateTime.now
 
         cnt = current_user.qr_codes.count
         if cnt % 5 == 0

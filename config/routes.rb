@@ -10,6 +10,7 @@ HicapQrContest::Application.routes.draw do
   scope :module => :api, :path => 'api/v:version', :as => :api do
     controller :leaderboard, :path => :leaderboard, :as => :leaderboard do
       get '', :action => :index, :anchor => true
+      get 'updates_since/:stamp', :action => :updates_since, :as => :updates_since
     end
   end
 end

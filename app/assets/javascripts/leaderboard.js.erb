@@ -1,0 +1,65 @@
+(function() {
+  var sortfunc = function(a, b) {
+    var ret = b.codes - a.codes;
+    if (ret == 0) {
+      if (a.stamp < b.stamp)
+        return -1;
+      else if (a.stamp > b.stamp)
+        return 1;
+    }
+    return ret;
+  };
+  
+  var lastupdate = null;
+  var users = null;
+  var leaderboard = null;
+  
+  var getUpdates = function() {
+    $.get(<%= HicapQrContest::Application.routes.url_helpers.api_leaderboard_updates_since_path(:version => 1, :stamp => '').to_json %> + lastupdate, function(data) {
+      lastupdate = data.timestamp;
+      users = users.concat(data.new_users);
+      $.each(data.updates, function() {
+        var idx = 0;
+        for (; idx < users.length; idx++) {
+          if (users[idx].id == this.id)
+            break;
+        }
+        if (idx < users.length) {
+          users[idx].codes = this.codes;
+          users[idx].stamp = this.stamp;
+        }
+      });
+      users.sort(sortFunc);
+    });
+  };
+  
+  var loadInitialTable = function() {
+    leaderboard = $('#leaderboard');
+    $.get(<%= HicapQrContest::Application.routes.url_helpers.api_leaderboard_path(:version => 1).to_json %>, function(data) {
+      lastupdate = data.timestamp;
+      users = data.users;
+      users.sort(sortFunc);
+      $.each(users, function() {
+        $('<div class="player"/>')
+          .text(this.name)
+          .prepend('<img src="' + this.pic + '" />')
+          .append('<span class="qrtotal">' + this.codes + '</span>')
+          .data('id', data.id)
+          .appendTo(leaderboard);
+      });
+      setInterval(getUpdates, <%= Settings.leaderboard_update_ms.to_json %>);
+    });
+  };
+  
+  var fbAuthorized = window.fbAuthorized;
+  window.fbAuthorized = function() {
+    loadInitialTable();
+    fbAuthorized();
+  };
+  
+  var fbNotAuthorized = window.fbNotAuthorized;
+  window.fbNotAuthorized = function() {
+    loadInitialTable();
+    fbNotAuthorized();
+  };
+})();

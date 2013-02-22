@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130219204035) do
+ActiveRecord::Schema.define(:version => 20130222041546) do
 
   create_table "badges", :force => true do |t|
     t.string   "slug",        :limit => 50,                 :null => false
@@ -43,10 +43,11 @@ ActiveRecord::Schema.define(:version => 20130219204035) do
   add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
 
   create_table "users", :primary_key => "fbid", :force => true do |t|
-    t.string   "username",                          :null => false
-    t.boolean  "use_profile_pic", :default => true, :null => false
-    t.datetime "created_at",                        :null => false
-    t.datetime "updated_at",                        :null => false
+    t.string   "username",                               :null => false
+    t.boolean  "use_profile_pic",      :default => true, :null => false
+    t.datetime "created_at",                             :null => false
+    t.datetime "updated_at",                             :null => false
+    t.datetime "last_qrcode_found_at"
   end
 
   create_table "users_badges", :id => false, :force => true do |t|
