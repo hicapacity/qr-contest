@@ -14,6 +14,15 @@
   var users = null;
   var leaderboard = null;
   
+  // unable to move a player to the end, but that should never be necessary
+  window.movePlayer = function(elem, after) {
+    var currentPos = elem.position();
+    var finalPos = after.position();
+    var finalHeight = elem.outerHeight();
+    var finalPlaceholder = $('<div class="placeholder"/>').style('height', '0px').insertBefore(after);
+    // TODO
+  };
+  
   var getUpdates = function() {
     $.get(<%= HicapQrContest::Application.routes.url_helpers.api_leaderboard_updates_since_path(:version => 1, :stamp => '').to_json %> + lastupdate, function(data) {
       lastupdate = data.timestamp;
@@ -44,6 +53,7 @@
           .text(this.name)
           .prepend('<img src="' + this.pic + '" />')
           .append('<span class="qrtotal">' + this.codes + '</span>')
+          .attr('id', 'player_' + data.id)
           .data('id', data.id)
           .appendTo(leaderboard);
       });
