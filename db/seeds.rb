@@ -42,6 +42,12 @@ Badge.create :slug => 'led-light-strips', :title => 'LED Light Strips', :qr_code
 code = QRCode.create :shortcode => '7tf3gg04uw'
 Badge.create :slug => 'event-calendar', :title => 'Event Calendar', :qr_code_id => code.id
 
+code = QRCode.create :shortcode => 'jdivhtimzi'
+Badge.create :slug => 'facebook', :title => 'Facebook Early Bird', :qr_code_id => code.id, :description => 'This badge was given to early participants who follow HI Capacity on Facebook.'
+
+code = QRCode.create :shortcode => '4b8rxh6w7c'
+Badge.create :slug => 'twitter', :title => 'Twitter Early Bird', :qr_code_id => code.id, :description => 'This badge was given to early participants who follow HI Capacity on Twitter.'
+
 # create some special-case badges
 Badge.create :slug => '3-members', :title => 'Found Three Members'
 Badge.create :slug => '6-members', :title => 'Found Six Members'
