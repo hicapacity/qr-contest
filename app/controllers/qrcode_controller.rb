@@ -16,6 +16,15 @@ class QrcodeController < ApplicationController
       unless current_user.qr_codes.exists? @code
         current_user.qr_codes << @code
         current_user.last_qrcode_found_at = DateTime.now
+        
+        cnt = current_user.qr_codes.where(:is_member => true).count
+        if cnt % 3 == 0
+          badge = Badge.find_by_slug "#{cnt}-members"
+          unless badge.nil?() || current_user.badges.exists?(badge)
+            current_user.badges << badge
+            @badges << badge
+          end
+        end
 
         cnt = current_user.qr_codes.count
         if cnt % 5 == 0
@@ -50,7 +59,7 @@ class QrcodeController < ApplicationController
     end
     
     begin
-      render params[:shortcode]
+      render 'qrcode/codes/' + params[:shortcode]
     rescue ActionView::MissingTemplate
       render
     end

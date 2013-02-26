@@ -1,32 +1,45 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the rake db:seed (or created alongside the db with db:setup).
-#
-# Examples:
-#
-#   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
-#   Mayor.create(name: 'Emanuel', city: cities.first)
-
-def create_shortcode
-  rand(36**10).to_s(36)
-end
+#def create_shortcode
+#  rand(36**10).to_s(36)
+#end
 
 # create 20 generic QR Codes
-(1..20).each{ QRCode.create :shortcode => create_shortcode }
+[ 'iefam55i63',
+  'iefam55i63',
+  '4vxp6re21p',
+  'nqgnmh7o6v',
+  '32s19aa1dm',
+  'c457z8pjpg',
+  '8sf3fn9e6w',
+  'bzzaxqlxsd',
+  'tin2unixbg',
+  'ccfv1yiu5r',
+  'lmapoqg1wg',
+  'jf2m04cn9i',
+  '3gsc5tv15a',
+  'xum2konbub',
+  'm6da8jxgpn',
+  'nbyyit8egj',
+  'bf4am4rshc',
+  '3qn8s7hy0a',
+  'r6wg4i54g6' ].each{ |code| QRCode.create :shortcode => code }
+
+# member codes
+QRCode.create :shortcode => '352fu4svgm', :is_member => true
 
 # create some specific QR Codes and corresponding badges
-code = QRCode.create :shortcode => create_shortcode
+code = QRCode.create :shortcode => 'twt9mm9kou'
 Badge.create :slug => '3d-printer', :title => '3D Printer', :qr_code_id => code.id
 
-code = QRCode.create :shortcode => create_shortcode
+code = QRCode.create :shortcode => '8thisqlis6'
 Badge.create :slug => 'oscilloscope', :title => 'Oscilloscope', :qr_code_id => code.id
 
-code = QRCode.create :shortcode => create_shortcode
+code = QRCode.create :shortcode => '9qnr45l6lv'
 Badge.create :slug => 'soldering-station', :title => 'Soldering Station', :qr_code_id => code.id
 
-code = QRCode.create :shortcode => create_shortcode
+code = QRCode.create :shortcode => '7lt6nsen5y'
 Badge.create :slug => 'led-light-strips', :title => 'LED Light Strips', :qr_code_id => code.id
 
-code = QRCode.create :shortcode => create_shortcode
+code = QRCode.create :shortcode => '7tf3gg04uw'
 Badge.create :slug => 'event-calendar', :title => 'Event Calendar', :qr_code_id => code.id
 
 # create some special-case badges

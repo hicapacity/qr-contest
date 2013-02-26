@@ -1,0 +1,12 @@
+<h2 class="general-smiley">You've found Bob!</h2>
+<p>
+  Bob is a software engineer, an electrical engineer, and an amateur photographer.
+  Bob comes to HI Capacity to work on his Android puzzle game.
+  He's also organized a couple photography events with members, including a weekend long outing to a beach house on the North Shore.
+  And he is responsible for the webapp you are using right now!
+  Though, don't blame him for any problems!
+  His next project after he has finished his game will probably be something electronic - maybe a Nixie Tube clock?
+</p>
+<% unless @badges.empty? %>
+  <%= render :partial => 'badge' %>
+<% end %>

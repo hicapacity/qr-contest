@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130222041546) do
+ActiveRecord::Schema.define(:version => 20130226042947) do
 
   create_table "badges", :force => true do |t|
     t.string   "slug",        :limit => 50,                 :null => false
@@ -27,9 +27,10 @@ ActiveRecord::Schema.define(:version => 20130222041546) do
   add_index "badges", ["slug"], :name => "index_badges_on_slug"
 
   create_table "qr_codes", :force => true do |t|
-    t.string   "shortcode",  :limit => 6, :null => false
-    t.datetime "created_at",              :null => false
-    t.datetime "updated_at",              :null => false
+    t.string   "shortcode",  :limit => 6,                    :null => false
+    t.datetime "created_at",                                 :null => false
+    t.datetime "updated_at",                                 :null => false
+    t.boolean  "is_member",               :default => false, :null => false
   end
 
   create_table "sessions", :force => true do |t|
