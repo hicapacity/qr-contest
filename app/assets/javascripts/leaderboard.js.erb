@@ -18,7 +18,7 @@
   window.movePlayer = function(elem, after) {
     var currentPos = elem.position();
     var finalPos = after.position();
-    var finalHeight = elem.outerHeight();
+    var finalHeight = elem.height();
     var finalPlaceholder = $('<div class="placeholder"/>').css('height', '0px').insertBefore(after);
     var currentPlaceholder = $('<div class="placeholder"/>').css('height', finalHeight + 'px').insertBefore(elem);
     elem.css({
@@ -28,7 +28,7 @@
       left: currentPos.left + 'px'
     });
     finalPlaceholder.animate({height: finalHeight + 'px'}, 750);
-    currentPlaceholder.slideUp(750);
+    currentPlaceholder.animate({height: '0px'}, 750);
     elem.animate({top: finalPos.top + 'px'}, 750, function() {
       finalPlaceholder.finish().remove();
       currentPlaceholder.finish().remove();
