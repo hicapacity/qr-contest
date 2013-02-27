@@ -70,7 +70,7 @@
           .text(this.name)
           .prepend('<img src="' + this.pic + '" />')
           .append('<span class="qrtotal">' + this.codes + '</span>')
-          .attr('id', 'player_' + data.id)
+          .attr('id', 'player_' + this.id)
           .data('id', data.id)
           .appendTo(leaderboard);
       });
