@@ -19,8 +19,8 @@
     var currentPos = elem.position();
     var finalPos = after.position();
     var finalHeight = elem.outerHeight();
-    var finalPlaceholder = $('<div class="placeholder"/>').style('height', '0px').insertBefore(after);
-    var currentPlaceholder = $('<div class="placeholder"/>').style('height', finalHeight + 'px').insertBefore(elem);
+    var finalPlaceholder = $('<div class="placeholder"/>').css('height', '0px').insertBefore(after);
+    var currentPlaceholder = $('<div class="placeholder"/>').css('height', finalHeight + 'px').insertBefore(elem);
     elem.css({
       position: 'absolute',
       top: currentPos.top + 'px',
