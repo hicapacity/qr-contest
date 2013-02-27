@@ -4,7 +4,7 @@
 
 # create 20 generic QR Codes
 [ 'iefam55i63',
-  'iefam55i63',
+  'h5jgtudsot',
   '4vxp6re21p',
   'nqgnmh7o6v',
   '32s19aa1dm',
