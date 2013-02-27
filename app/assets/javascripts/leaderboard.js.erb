@@ -20,7 +20,24 @@
     var finalPos = after.position();
     var finalHeight = elem.outerHeight();
     var finalPlaceholder = $('<div class="placeholder"/>').style('height', '0px').insertBefore(after);
-    // TODO
+    var currentPlaceholder = $('<div class="placeholder"/>').style('height', finalHeight + 'px').insertBefore(elem);
+    elem.css({
+      position: 'absolute',
+      top: currentPos.top + 'px',
+      left: currentPos.left + 'px'
+    });
+    finalPlaceholder.slideDown(750);
+    currentPlaceholder.slideUp(750);
+    elem.animate({top: finalPos.top + 'px'}, 750, function() {
+      finalPlaceholder.finish().remove();
+      currentPlaceholder.finish().remove();
+      elem.css({
+        position: 'relative',
+        top: 0,
+        left: 0
+      });
+      after.before(elem);
+    });
   };
   
   var getUpdates = function() {
