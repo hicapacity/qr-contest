@@ -1,0 +1,10 @@
+<h2 class="general-smiley">You've found Jason!</h2>
+<p>
+  HTDC is the State agency working on tech based economic development.
+  Simply put, we like tech businesses and work to help them grow.
+  We help by incubating companies at the Manoa Innovation Center, organizing industry events like Wetware Wednesday, and helping legislators make better policies like last years $2M Venture Accelerator bill and this years $20M Hi Growth Initiative.
+  Check us out at <a href="http://htdc.org/" class="general-website">htdc.org</a>.
+</p>
+<% unless @badges.empty? %>
+  <%= render :partial => 'badge' %>
+<% end %>

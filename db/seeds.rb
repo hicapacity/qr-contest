@@ -19,11 +19,11 @@
   'xum2konbub',
   'm6da8jxgpn',
   'nbyyit8egj',
-  'bf4am4rshc',
-  '3qn8s7hy0a',
-  'r6wg4i54g6' ].each{ |code| QRCode.create :shortcode => code }
+  'bf4am4rshc' ].each{ |code| QRCode.create :shortcode => code }
 
 # member codes
+QRCode.create :shortcode => '3qn8s7hy0a', :is_member => true
+QRCode.create :shortcode => 'r6wg4i54g6', :is_member => true
 QRCode.create :shortcode => '352fu4svgm', :is_member => true
 
 # create some specific QR Codes and corresponding badges
