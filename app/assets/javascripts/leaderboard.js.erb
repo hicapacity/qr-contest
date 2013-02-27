@@ -23,16 +23,18 @@
     var currentPlaceholder = $('<div class="placeholder"/>').css('height', finalHeight + 'px').insertBefore(elem);
     elem.css({
       position: 'absolute',
+      width: elem.outerWidth() + 'px',
       top: currentPos.top + 'px',
       left: currentPos.left + 'px'
     });
-    finalPlaceholder.slideDown(750);
+    finalPlaceholder.animate({height: finalHeight + 'px'}, 750);
     currentPlaceholder.slideUp(750);
     elem.animate({top: finalPos.top + 'px'}, 750, function() {
       finalPlaceholder.finish().remove();
       currentPlaceholder.finish().remove();
       elem.css({
         position: 'relative',
+        width: 'auto',
         top: 0,
         left: 0
       });
