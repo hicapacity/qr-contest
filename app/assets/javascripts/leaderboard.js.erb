@@ -18,7 +18,7 @@
   window.movePlayer = function(elem, after) {
     var currentPos = elem.position();
     var finalPos = after.position();
-    var finalHeight = elem.height();
+    var finalHeight = elem.outerHeight();
     var finalPlaceholder = $('<div class="placeholder"/>').css('height', '0px').insertBefore(after);
     var currentPlaceholder = $('<div class="placeholder"/>').css('height', finalHeight + 'px').insertBefore(elem);
     elem.css({
