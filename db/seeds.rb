@@ -13,13 +13,13 @@
   'bzzaxqlxsd',
   'tin2unixbg',
   'ccfv1yiu5r',
-  'lmapoqg1wg',
   'jf2m04cn9i',
   '3gsc5tv15a',
   'xum2konbub',
   'm6da8jxgpn' ].each{ |code| QRCode.create :shortcode => code }
 
 # member codes
+QRCode.create :shortcode => 'lmapoqg1wg', :is_member => true
 QRCode.create :shortcode => 'nbyyit8egj', :is_member => true
 QRCode.create :shortcode => 'bf4am4rshc', :is_member => true
 QRCode.create :shortcode => '3qn8s7hy0a', :is_member => true
