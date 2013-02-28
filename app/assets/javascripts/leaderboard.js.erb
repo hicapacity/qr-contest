@@ -82,24 +82,20 @@
       var num = 0;
       var callback = function() {
         if (currentElem.data('id') != users[num].id) {
-          console.log('Num ' + num + ': ' + currentElem.data('id') + ' does not match ' + users[num].id);
           var swap = $('#player_' + users[num].id);
           if (swap.length > 0) {
-            console.log('found swap');
             num++;
             movePlayer(swap, currentElem, callback);
             return;
           }
           // how did we get here?
-          //window.location.reload();
-          console.log('Broken 1');
+          window.location.reload();
         } else {
           currentElem = currentElem.next('.player');
           num++;
           if ((currentElem.length == 0 && num < users.length) || (currentElem.length > 0 && num >= users.length)) {
             // how did we get here?
-            //window.location.reload();
-            console.log('Broken 2');
+            window.location.reload();
           } else if (num < users.length) {
             callback();
           }
@@ -112,8 +108,6 @@
   var loadInitialTable = function() {
     leaderboard = $('#leaderboard');
     $.get(<%= HicapQrContest::Application.routes.url_helpers.api_leaderboard_path(:version => 1).to_json %>, function(data) {
-      // TODO: remove next line - added for testing
-      data = {"timestamp":"2013-02-21T20:00:10-10:00","users":[{"id":9324158,"name":"Bob","pic":"//graph.facebook.com/9324158/picture","codes":6,"stamp":"2013-02-26T06:56:46Z"}]};
       lastupdate = data.timestamp;
       users = data.users;
       users.sort(sortFunc);
