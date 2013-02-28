@@ -46,7 +46,7 @@
     });
   };
   
-  var createPlayers(users) {
+  var createPlayers = function(users) {
     $.each(users, function() {
       $('<div class="player"/>')
         .text(this.name)
