@@ -73,6 +73,7 @@
         if (idx < users.length) {
           users[idx].codes = this.codes;
           users[idx].stamp = this.stamp;
+          $('#player_' + this.id + ' span.qrtotal').text(this.codes);
         }
       });
       users.sort(sortFunc);
@@ -89,13 +90,15 @@
             }
           }
           // how did we get here?
-          window.location.reload();
+          //window.location.reload();
+          console.log('Broken 1');
         } else {
           currentElem = currentElem.next('.player');
           num++;
           if ((currentElem.length == 0 && num < users.length) || (currentElem.length > 0 && num >= users.length)) {
             // how did we get here?
-            window.location.reload();
+            //window.location.reload();
+            console.log('Broken 2');
           } else if (num < users.length) {
             callback();
           }
