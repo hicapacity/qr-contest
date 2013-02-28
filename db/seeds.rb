@@ -17,11 +17,11 @@
   'jf2m04cn9i',
   '3gsc5tv15a',
   'xum2konbub',
-  'm6da8jxgpn',
-  'nbyyit8egj',
-  'bf4am4rshc' ].each{ |code| QRCode.create :shortcode => code }
+  'm6da8jxgpn' ].each{ |code| QRCode.create :shortcode => code }
 
 # member codes
+QRCode.create :shortcode => 'nbyyit8egj', :is_member => true
+QRCode.create :shortcode => 'bf4am4rshc', :is_member => true
 QRCode.create :shortcode => '3qn8s7hy0a', :is_member => true
 QRCode.create :shortcode => 'r6wg4i54g6', :is_member => true
 QRCode.create :shortcode => '352fu4svgm', :is_member => true

@@ -1,0 +1,8 @@
+<h2 class="general-smiley">You've found Beer!</h2>
+<p>
+  This beer has been lovingly hand-crafted for your pleasure by HI Capacity members.
+  Try our Left Coast Ale, or the Ilaniwai IPA.
+</p>
+<% unless @badges.empty? %>
+  <%= render :partial => 'badge' %>
+<% end %>
