@@ -83,13 +83,12 @@
       var callback = function() {
         if (currentElem.data('id') != users[num].id) {
           console.log('Num ' + num + ': ' + currentElem.data('id') + ' does not match ' + users[num].id);
-          for (var swap = currentElem.next('.player'); swap.length > 1; swap = swap.next('.player')) {
-            if (swap.data('id') == users[num].id) {
-              console.log('found swap');
-              num++;
-              movePlayer(swap, currentElem, callback);
-              return;
-            }
+          var swap = $('#player_' + users[num].id);
+          if (swap.length > 0) {
+            console.log('found swap');
+            num++;
+            movePlayer(swap, currentElem, callback);
+            return;
           }
           // how did we get here?
           //window.location.reload();
