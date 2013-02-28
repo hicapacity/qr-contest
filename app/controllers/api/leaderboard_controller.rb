@@ -17,9 +17,10 @@ module Api
     end
     
     def updates_since
+      condition = params[:stamp].gsub('T', ' ')
       render :json => {
         :timestamp => DateTime.now.utc.iso8601,
-        :new_users => User.where('created_at > ?', params[:stamp]).map do |u|
+        :new_users => User.where('created_at > ?', condition).map do |u|
           {
             :id => u.fbid,
             :name => u.username,
@@ -28,7 +29,7 @@ module Api
             :stamp => (u.last_qrcode_found_at.nil?() ? 0 : u.last_qrcode_found_at.utc.iso8601)
           }
         end,
-        :updates => User.where('last_qrcode_found_at > ?', params[:stamp]).map do |u|
+        :updates => User.where('last_qrcode_found_at > ?', condition).map do |u|
           {
             :id => u.fbid,
             :codes => u.qr_codes.count,
